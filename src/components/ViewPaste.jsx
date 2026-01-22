@@ -6,7 +6,8 @@ const ViewPaste = () => {
 
   const allPastes = useSelector((state) => state.paste.pastes);
 
-  const paste = allPastes.filter((p) => p._id === id)[0];
+  const paste = allPastes.find((p) => p._id === id);
+  if (!paste) return <h1>Note Not Found</h1>;
 
   return (
     <div>

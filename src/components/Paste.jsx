@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromPastes } from "../reduxx/pasteSlice";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Paste = () => {
+  const navigate = useNavigate();
   const pas = useSelector((state) => state.paste.pastes);
 
   const [searchTerm, setSeacrhTerm] = useState("");
@@ -23,7 +25,8 @@ const Paste = () => {
   // Share Button function
 
   function handleShare(paste) {
-    const link = `${window.location.origin}/paste/${paste._id}`;
+    const base = "/Note_Book";
+    const link = `${window.location.origin}${base}/paste/${paste._id}`;
 
     if (navigator.share) {
       navigator
@@ -58,12 +61,12 @@ const Paste = () => {
                 <div>{paste.title}</div>
                 <div>{paste.content}</div>
                 <div className="flex flex-row gap-4 place-content-evenly">
-                  <button>
-                    <a href={`/?pasteId=${paste?._id}`}>Edit</a>
+                  <button onClick={() => navigate(`/?pasteId=${paste._id}`)}>
+                    Edit
                   </button>
 
-                  <button>
-                    <a href={`/paste/${paste?._id}/`}>View</a>
+                  <button onClick={() => navigate(`/paste/${paste._id}`)}>
+                    View
                   </button>
 
                   <button onClick={() => handleDelete(paste?._id)}>

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://amankumar957.github.io/Note_Book",
+  "homepage": "https://amankumar957.github.io/Note_Book/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
